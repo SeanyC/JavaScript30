@@ -71,7 +71,7 @@ console.log(sortedByLastName)
 
 // 8. Reduce Exercise
 // Sum up the instances of each of these
-const data = ['car', 'car', 'truck', 'truck', 'bike', 'walk', 'car', 'van', 'bike', 'walk', 'car', 'van', 'car', 'truck' ];
+const data = ['car', 'car', 'truck', 'truck', 'bike', 'walk', 'car', 'van', 'bike', 'walk', 'car', 'van', 'car', 'truck'];
 var dataTotals = data.reduce(function (totals, vehicle) {
   if (!totals[vehicle]) {
     totals[vehicle] = 0
