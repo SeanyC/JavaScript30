@@ -22,25 +22,61 @@ const people = ['Beck, Glenn', 'Becker, Carl', 'Beckett, Samuel', 'Beddoes, Mick
 
 // Array.prototype.filter()
 // 1. Filter the list of inventors for those who were born in the 1500's
+var bornInThe1500s = inventors.filter(function (inventor) {
+  return (inventor.year >= 1500 && inventor.year < 1600)
+})
+console.table(bornInThe1500s)
 
 // Array.prototype.map()
 // 2. Give us an array of the inventors' first and last names
+var names = inventors.map(function (inventor) {
+  return `${inventor.first} ${inventor.last}`
+})
+console.log(names)
 
 // Array.prototype.sort()
 // 3. Sort the inventors by birthdate, oldest to youngest
+var sortedByBirthYear = inventors.sort(function (a, b) {
+  return a.year - b.year
+})
+console.table(sortedByBirthYear)
 
 // Array.prototype.reduce()
-// 4. How many years did all the inventors live?
+// 4. How many years did all the inventors live combined?
+var totalLifespan = inventors.reduce(function (total, inventor) {
+  return total + (inventor.passed - inventor.year)
+}, 0)
+console.log(totalLifespan)
 
 // 5. Sort the inventors by years lived
+var sortedByYearsLived = inventors.sort(function (a, b) {
+  return (a.passed - a.year) - (b.passed - b.year)
+})
+console.table(sortedByYearsLived)
 
 // 6. create a list of Boulevards in Paris that contain 'de' anywhere in the name
 // https://en.wikipedia.org/wiki/Category:Boulevards_in_Paris
-
+const parisBoulevards = ["Boulevards of Paris", "City walls of Paris", "Thiers wall", "Wall of Charles V", "Wall of Philip II Augustus", "City gates of Paris", "Haussmann's renovation of Paris", "Boulevards of the Marshals", "Boulevard Auguste-Blanqui", "Boulevard Barbès", "Boulevard Beaumarchais", "Boulevard de l'Amiral-Bruix", "Boulevard des Capucines", "Boulevard de la Chapelle", "Boulevard de Clichy", "Boulevard du Crime", "Boulevard Haussmann", "Boulevard de l'Hôpital", "Boulevard des Italiens", "Boulevard de la Madeleine", "Boulevard de Magenta", "Boulevard Montmartre", "Boulevard du Montparnasse", "Boulevard Raspail", "Boulevard Richard-Lenoir", "Boulevard de Rochechouart", "Boulevard Saint-Germain", "Boulevard Saint-Michel", "Boulevard de Sébastopol", "Boulevard de Strasbourg", "Boulevard du Temple", "Boulevard Voltaire", "Boulevard de la Zone"]
+var withDe = parisBoulevards.filter((streetName) => streetName.includes('de'))
+console.log(withDe)
 
 // 7. sort Exercise
 // Sort the people alphabetically by last name
+var sortedByLastName = people.sort(function (a, b) {
+  var [aLast, aFirst] = a.split(', ')
+  var [bLast, bFirst] = a.split(', ')
+  return (aLast - bLast)
+})
+console.log(sortedByLastName)
 
 // 8. Reduce Exercise
 // Sum up the instances of each of these
 const data = ['car', 'car', 'truck', 'truck', 'bike', 'walk', 'car', 'van', 'bike', 'walk', 'car', 'van', 'car', 'truck' ];
+var dataTotals = data.reduce(function (totals, vehicle) {
+  if (!totals[vehicle]) {
+    totals[vehicle] = 0
+  }
+  totals[vehicle]++
+  return totals
+}, {})
+console.log(dataTotals)
